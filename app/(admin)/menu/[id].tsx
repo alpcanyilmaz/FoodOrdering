@@ -14,7 +14,7 @@ const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
 
 const ProductDetailsScreen = () => {
   const { id } = useLocalSearchParams();
-  const {addItem} = useCart();
+  const { addItem } = useCart();
 
   const router = useRouter();
 
@@ -27,8 +27,8 @@ const ProductDetailsScreen = () => {
       return;
     }
     addItem(product, selectedSize);
-    router.push('/cart');
-  }
+    router.push("/cart");
+  };
 
   if (!product) {
     return <Text>Product not found</Text>;
@@ -37,7 +37,6 @@ const ProductDetailsScreen = () => {
   return (
     <View style={styles.container}>
       <Stack.Screen
-
         options={{
           title: "Menu",
           headerRight: () => (
@@ -57,15 +56,11 @@ const ProductDetailsScreen = () => {
         }}
       />
 
-
-
       <Stack.Screen options={{ title: product.name }} />
       <Image
-        source={{ uri: product.image } || defaultPizzaImage}
+        source={{ uri: product?.image ?? defaultPizzaImage }}
         style={styles.image}
       />
-
-
 
       <Text style={styles.title}>{product.name}</Text>
       <Text style={styles.price}>${product.price}</Text>
@@ -92,7 +87,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-
 });
 
 export default ProductDetailsScreen;
